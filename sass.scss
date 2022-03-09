@@ -74,9 +74,15 @@ nav {
   padding: 20px;
   vertical-align: middle;
   font-weight: 800;
-  margin: 20vh 0px;
+  margin: 0vh 0px;
+  padding-top: 20vh;
   font-size: min(20vw, 7rem);
   color: $color2;
+  background-image:  url("resources/wallpaper.png");
+  height: calc(50vh - 70px); /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; 
 }
 
 .play {
@@ -152,20 +158,23 @@ nav {
   form {
     margin: 0vh auto;
     width: 100%;
-    margin-bottom: 7vh;
+    margin-bottom: 15vh;
     display: flex;
     justify-content: center;
     align-items: center;
     .search-bar {
       width: min(800px, 90%);
-      height: 30px;
+      height: 25px;
       background-color: $color2;
       display: flex;
       flex-direction: row;
       border-radius: 25px;
-      padding: 20px 0px;
+      padding: 17px 0px;
       img {
         margin-left: 20px;
+        &:hover {
+          cursor: pointer;
+        }
       }
       input {
         flex: 1;
