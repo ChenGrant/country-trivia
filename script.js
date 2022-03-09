@@ -7,6 +7,7 @@ form.addEventListener("submit", (event) => {
   render(country_name);
 });
 
+
 let render = async (name) => {
   try {
     const countryResponse = await fetch("https://restcountries.com/v3.1/all");
@@ -33,10 +34,10 @@ let render = async (name) => {
       }
     }
     if (!found) {
-        console.log("not found")
+      document.getElementById("not-found-country").innerHTML = name;
+      document.getElementById("not-found").style.display = "block";
     } else {
         console.log(country);
-
     }
   } catch (err) {
     console.log("ERROR");

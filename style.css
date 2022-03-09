@@ -175,7 +175,6 @@ nav .center_nav {
 #search form {
   margin: 0vh auto;
   width: 100%;
-  margin-bottom: 15vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -204,6 +203,17 @@ nav .center_nav {
   color: white;
   border: 0px;
   outline: 0px;
+}
+
+#not-found {
+  display: none;
+  margin: 10vh 0px;
+  text-align: center;
+  font-size: 25px;
+  padding: 0px 20px;
+}
+#not-found span {
+  color: #313bac;
 }
 
 /*# sourceMappingURL=style.css.map */
