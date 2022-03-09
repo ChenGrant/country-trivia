@@ -175,7 +175,7 @@ nav .center_nav {
   padding: 17px 20px;
 }
 #search form .search-bar img {
-  margin-left: 20px;
+  margin-left: 0px;
 }
 #search form .search-bar img:hover {
   cursor: pointer;
