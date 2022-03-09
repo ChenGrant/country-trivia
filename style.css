@@ -147,6 +147,7 @@ nav .center_nav {
   width: 100%;
   margin: 0 auto;
   padding: 30px 0px;
+  height: 50vh;
 }
 #search #search_h1 {
   color: #313bac;
@@ -165,13 +166,13 @@ nav .center_nav {
   align-items: center;
 }
 #search form .search-bar {
-  width: min(800px, 90%);
+  width: min(800px, 80%);
   height: 25px;
   background-color: #313bac;
   display: flex;
   flex-direction: row;
   border-radius: 25px;
-  padding: 17px 0px;
+  padding: 17px 20px;
 }
 #search form .search-bar img {
   margin-left: 20px;
