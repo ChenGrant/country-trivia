@@ -214,3 +214,22 @@ nav {
     color: $color2;
   }
 }
+
+#found {
+  display: none;
+  margin: 10vh 0px;
+  text-align: center;
+  font-size: 25px;
+  padding: 0px 20px;
+  span {
+    color: $color2;
+  }
+  a {
+    &:visited, &:active, &:link, &:hover {
+      color: $color2;
+    }
+  }
+  img {
+    height: 20px;
+  }
+}

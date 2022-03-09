@@ -13,8 +13,6 @@ let getCountryData = async () => {
 getCountryData();
 
 let render = (name) => {
-  let country;
-  let found = false;
   for (const countryNum in countryData) {
     const currCountry = countryData[countryNum];
     let names = currCountry.altSpellings;
@@ -22,24 +20,24 @@ let render = (name) => {
     names.push(currCountry.name.official);
     names = names.map((element) => element.toLowerCase());
     if (names.includes(name)) {
-      console.log(currCountry);
-      country = {
-        name: currCountry.name.common,
-        flag: currCountry.flags.png,
-        currencies: currCountry.currencies,
-        languages: currCountry.languages,
-        "more info": currCountry,
-      };
-      found = true;
-      break;
+      document.getElementById("found-country").innerHTML = currCountry.name.common;
+      document.getElementById("not-found").style.display = "none";
+      document.getElementById("found").style.display = "block";
+      document
+        .getElementById("more-info")
+        .setAttribute(
+          "href",
+          "https://restcountries.com/v3.1/name/" +
+            currCountry.name.common +
+            "?fullText=true"
+        );
+      document.getElementById("country-flag").src = currCountry.flags.png;
+      return;
     }
   }
-  if (!found) {
-    document.getElementById("not-found-country").innerHTML = name;
-    document.getElementById("not-found").style.display = "block";
-  } else {
-    console.log(country);
-  }
+  document.getElementById("not-found-country").innerHTML = name;
+  document.getElementById("not-found").style.display = "block";
+  document.getElementById("found").style.display = "none";
 };
 
 var form = document.getElementById("form");

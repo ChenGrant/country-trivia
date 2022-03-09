@@ -216,4 +216,21 @@ nav .center_nav {
   color: #313bac;
 }
 
+#found {
+  display: none;
+  margin: 10vh 0px;
+  text-align: center;
+  font-size: 25px;
+  padding: 0px 20px;
+}
+#found span {
+  color: #313bac;
+}
+#found a:visited, #found a:active, #found a:link, #found a:hover {
+  color: #313bac;
+}
+#found img {
+  height: 20px;
+}
+
 /*# sourceMappingURL=style.css.map */
