@@ -1,0 +1,292 @@
+$color1: #d8dee7;
+$color2: #313bac;
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  background-color: white;
+  font-family: "DM Sans", sans-serif;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  color: white;
+  border: 0px;
+  -webkit-text-fill-color: white;
+  transition: background-color 5000s ease-in-out 0s;
+}
+a {
+  text-decoration: none;
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  height: 50px;
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  box-shadow: 0 0px 40px 10px $color1;
+  background-image: linear-gradient(to right, white, $color1);
+  z-index: 3;
+  div {
+    display: flex;
+    align-content: center;
+    img {
+      height: 100%;
+    }
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: black;
+    a {
+      &:visited {
+        color: black;
+      }
+      &:active {
+        color: black;
+      }
+      &:link {
+        color: black;
+      }
+      &:hover {
+        color: black;
+        cursor: pointer;
+      }
+    }
+  }
+  .logo {
+    flex: 1;
+    margin-left: 20px;
+  }
+  .right {
+    flex: 1;
+  }
+  .center_nav {
+    margin: 0px 15px;
+    margin-top: 12px;
+  }
+}
+
+.offset {
+  height: 70px;
+}
+
+.wallpaper {
+  z-index: 0;
+  text-align: center;
+  width: calc(100% - 2 * 20px);
+  padding: 20px;
+  vertical-align: middle;
+  font-weight: 800;
+  margin: 0vh 0px;
+  padding-top: 25vh;
+  font-size: min(20vw, 7rem);
+  color: $color2;
+  background-image: url("resources/wallpaper.png");
+  height: calc(50vh - 70px); /* You must set a specified height */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover;
+}
+
+.play {
+  background-color: $color1;
+  width: 100%;
+  #play_h1 {
+    color: black;
+    span {
+      color: $color2;
+    }
+    text-align: center;
+    padding: 10vh 5px;
+    padding-bottom: 0px;
+  }
+  .modes {
+    padding: 8vh 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    .row {
+      display: flex;
+      flex: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+      a {
+        color: white;
+        width: 250px;
+        background-color: $color2;
+        margin: 20px;
+        border-radius: 20px;
+        padding: 10px;
+        text-decoration: none;
+        padding: 20px;
+        img {
+          width: 80%;
+          margin: 20px 0px;
+        }
+        &:visited {
+          color: white;
+        }
+        &:active {
+          color: white;
+        }
+        &:link {
+          color: white;
+        }
+        &:hover {
+          box-shadow: 0px 0px 15px 10px #858585;
+        }
+      }
+    }
+  }
+}
+
+::placeholder {
+  color: white;
+}
+#search {
+  width: 100%;
+  margin: 0 auto;
+  padding: 30px 0px;
+  height: 50vh;
+  #search_h1 {
+    color: $color2;
+    span {
+      color: black;
+    }
+    text-align: center;
+    padding: 7vh 5px;
+  }
+  form {
+    margin: 0vh auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .search-bar {
+      width: min(800px, 80%);
+      height: 25px;
+      background-color: $color2;
+      display: flex;
+      flex-direction: row;
+      border-radius: 25px;
+      padding: 17px 20px;
+      img {
+        margin-left: 0px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      input {
+        flex: 1;
+        width: 0px;
+        margin: 0px 20px;
+        font-size: 25px;
+        background-color: $color2;
+        color: white;
+        border: 0px;
+        outline: 0px;
+      }
+    }
+  }
+}
+
+#not-found {
+  display: none;
+  margin: 10vh 0px;
+  text-align: center;
+  font-size: 25px;
+  padding: 0px 20px;
+  span {
+    color: $color2;
+  }
+}
+
+#found {
+  display: none;
+  margin: 10vh 0px;
+  text-align: center;
+  font-size: 25px;
+  padding: 0px 20px;
+  span {
+    color: $color2;
+  }
+  a {
+    &:visited,
+    &:active,
+    &:link,
+    &:hover {
+      color: $color2;
+    }
+  }
+  img {
+    height: 20px;
+  }
+}
+
+.quiz-config {
+  margin-top: 15vh;
+  text-align: center;
+  h1 {
+    span {
+      color: $color2;
+    }
+    margin-bottom: 15vh;
+  }
+  .num_questions {
+    margin: 20vh 0px;
+    font-size: 30px;
+  }
+  input {
+    font-size: 30px;
+    border: none;
+    outline: none;
+    width: 60px;
+    border-bottom: 5px solid $color2;
+    font-family: "DM Sans", sans-serif;
+  }
+  .error_message {
+    display: none;
+    margin-top: 3vw;
+    font-size: 30px;
+    color: $color2;
+  }
+  button {
+    margin-top: 10vh;
+    width: min(300px, 70%);
+    font-size: 30px;
+    padding: 20px;
+    background-color: $color2;
+    color: white;
+    border: none;
+    font-family: "DM Sans", sans-serif;
+    border-radius: 40px;
+    &:hover {
+      box-shadow: 0px 0px 30px 10px gray;
+      cursor: pointer;
+    }
+  }
+}
+.completed {
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  img {
+    height: 5vw;
+    margin: 0px 5px;
+  }
+}
+

@@ -6,7 +6,7 @@ let getCountryData = async () => {
     countryResponse = await fetch("https://restcountries.com/v3.1/all");
     countryData = await countryResponse.json();
   } catch (err) {
-    console.log("error");
+    console.log("API ERROR");
   }
 };
 

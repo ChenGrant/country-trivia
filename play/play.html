@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country Trivia Play</title>
+    <link rel="shortcut icon" type="img/png" href="resources/logo.png" />
+    <link rel="stylesheet" href="play.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <nav>
+      <div class="logo">
+        <a href="index.html"><img src="../resources/logo.png" /></a>
+      </div>
+      <div class="center_nav"><a href="../index.html">HOME</a></div>
+      <div class="center_nav"><a href="../index.html#play">MODES</a></div>
+      <div class="center_nav"><a href="../index.html#search">SEARCH</a></div>
+      <div class="right"></div>
+    </nav>
+    <div class="offset"></div>
+    <div class = "quiz-config">
+      <h1>Get ready to match <span>countries</span> and their <span>capitals</span>.</h1>
+      <span class = "num_questions">Number of Questions: </span>
+      <input type="number" id = "num_questions" onkeydown="search(this)" value = "10"/>
+      <div class = "error_message">The number of questions must be between 1 and 50 inclusive.</div>
+      <br>
+      <button type = "button" onclick="quizSubmit()">Start Quiz</button>
+    </div>
+    <div class = "quiz">
+      <ul class ="completed">
+        <img src = "../resources/capital.png">
+        <img src = "../resources/capital.png">
+        <img src = "../resources/capital.png">
+        <img src = "../resources/capital.png">
+        <img src = "../resources/capital.png">
+        <img src = "../resources/capital.png">
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+      </ul>
+    </div>
+    <script src="play.js"></script>
+  </body>
+</html>
