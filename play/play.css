@@ -314,7 +314,7 @@ nav .center_nav {
 }
 .quiz .completed .completion_number {
   display: flex;
-  margin: 10px;
+  margin: 8px;
   background-color: #313bac;
   width: 30px;
   height: 30px;
@@ -323,6 +323,14 @@ nav .center_nav {
   justify-content: center;
   color: white;
   border-radius: 100vh;
+}
+.quiz .completed .check_mark {
+  background-color: #06ad06;
+  font-weight: 800;
+}
+.quiz .completed .x_mark {
+  background-color: rgba(255, 0, 0, 0.925);
+  font-weight: 800;
 }
 .quiz .question {
   margin: 5vh 0px;

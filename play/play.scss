@@ -313,7 +313,7 @@ nav {
     max-width: 500px;
     .completion_number {
       display: flex;
-      margin: 10px;
+      margin: 8px;
       background-color: $color2;
       width: 30px;
       height: 30px;
@@ -322,6 +322,14 @@ nav {
       justify-content: center;
       color: white;
       border-radius: 100vh;
+    }
+    .check_mark {
+      background-color: rgb(6, 173, 6);
+      font-weight: 800;
+    }
+    .x_mark {
+      background-color: rgba(255, 0, 0, 0.925);
+      font-weight: 800;
     }
   }
   .question {

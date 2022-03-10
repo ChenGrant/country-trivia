@@ -6,6 +6,8 @@ const NUM_OPTIONS = 5;
 const CORRECT = "correct";
 const INCORRECT = "incorrect";
 const INCOMPLETE = "";
+const CHECK_MARK = "&#10003;";
+const X_MARK = "&#10005;";
 const countryModePairs = [];
 
 let questionCompletion = [];
@@ -83,17 +85,34 @@ let quizSubmit = () => {
   initQuestionCompletion();
   $(".quiz-config").css("display", "none");
   $(".quiz").css("display", "block");
-  renderQuiz();
+  renderCompletion();
   renderQuestion();
 };
 
-let renderQuiz = () => {
-  let completion = $(".completed");
+let renderCompletion = () => {
+  let completionElement = $(".completed");
+  console.log(questionCompletion);
   for (let i = 0; i < numQuestions; i++) {
     const icon = document.createElement("div");
     icon.textContent = i + 1;
     icon.classList.add("completion_number");
-    completion.append(icon);
+    completionElement.append(icon);
+  }
+};
+
+let updateCompletion = () => {
+  let icons = Array.from(document.querySelector(".completed").children);
+  for (let i = 0; i < numQuestions; i++) {
+    const icon = icons[i];
+    if (questionCompletion[i] === CORRECT) {
+      icon.innerHTML = CHECK_MARK;
+      icon.classList.add("check_mark");
+    } else if (questionCompletion[i] === INCORRECT) {
+      icon.innerHTML = X_MARK;
+      icon.classList.add("x_mark");
+    } else {
+      icon.textContent = i + 1;
+    }
   }
 };
 
@@ -155,8 +174,8 @@ let user_answer = (choice) => {
     console.log("wrong, correct answer is: " + answerMode);
     updateQuestionCompletion(INCORRECT);
   }
-  console.log(questionCompletion);
   renderQuestion();
+  updateCompletion();
 };
 
 renderMode();
