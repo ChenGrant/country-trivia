@@ -31,9 +31,6 @@ let getData = async () => {
   }
 };
 
-let renderMode = () => {
-  $(".mode").text(MODE);
-};
 
 let updateQuestionCompletion = (response) => {
   questionCompletion[questionCompletion.indexOf(INCOMPLETE)] = response;
@@ -166,6 +163,31 @@ let renderQuestion = () => {
   $(".question_country").text(answerCountry);
 };
 
+let removeQuestions = () => {
+  $(".question").css("display", "none");
+
+}
+
+let removeOptions = () => {
+  $(".options").css("display", "none");
+}
+
+
+let renderScore = () => {
+  $(".score").css("display", "flex");
+  console.log(questionCompletion);
+  const numCorrect = questionCompletion.reduce((prev, current) => {
+    if (current === CORRECT) {
+      return prev + 1;
+    } else {
+      return prev
+    }
+  }, 0)
+  const str = numCorrect +"/"+numQuestions;
+  $(".score_num").text(str);
+}
+
+
 let user_answer = (choice) => {
   if (choice === answerOptionNum) {
     console.log("correct");
@@ -174,9 +196,14 @@ let user_answer = (choice) => {
     console.log("wrong, correct answer is: " + answerMode);
     updateQuestionCompletion(INCORRECT);
   }
-  renderQuestion();
+  if (numQuestions != currQuestionNum) {
+    renderQuestion();
+  } else {
+    removeQuestions();
+    removeOptions();
+    renderScore();
+  }
   updateCompletion();
 };
 
-renderMode();
 getData();
