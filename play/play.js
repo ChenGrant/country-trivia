@@ -11,11 +11,9 @@ const X_MARK = "&#10005;";
 const countryModePairs = [];
 
 let questionCompletion = [];
-
 let numQuestions = 0;
 let currQuestionNum = 0;
 let availableCountries = [];
-
 let answerCountry;
 let answerMode;
 let answerOptionNum;
@@ -30,7 +28,6 @@ let getData = async () => {
     console.log(err);
   }
 };
-
 
 let updateQuestionCompletion = (response) => {
   questionCompletion[questionCompletion.indexOf(INCOMPLETE)] = response;
@@ -165,13 +162,11 @@ let renderQuestion = () => {
 
 let removeQuestions = () => {
   $(".question").css("display", "none");
-
-}
+};
 
 let removeOptions = () => {
   $(".options").css("display", "none");
-}
-
+};
 
 let renderScore = () => {
   $(".score").css("display", "flex");
@@ -180,13 +175,12 @@ let renderScore = () => {
     if (current === CORRECT) {
       return prev + 1;
     } else {
-      return prev
+      return prev;
     }
-  }, 0)
-  const str = numCorrect +"/"+numQuestions;
+  }, 0);
+  const str = numCorrect + "/" + numQuestions;
   $(".score_num").text(str);
-}
-
+};
 
 let user_answer = (choice) => {
   if (choice === answerOptionNum) {
