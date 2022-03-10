@@ -20,7 +20,8 @@ let render = (name) => {
     names.push(currCountry.name.official);
     names = names.map((element) => element.toLowerCase());
     if (names.includes(name)) {
-      document.getElementById("found-country").innerHTML = currCountry.name.common;
+      document.getElementById("found-country").innerHTML =
+        currCountry.name.common;
       document.getElementById("not-found").style.display = "none";
       document.getElementById("found").style.display = "block";
       document
@@ -49,7 +50,6 @@ form.addEventListener("submit", (event) => {
   render(country_name.toLowerCase());
 });
 
-
 function toggle_mobile_menu(){
   if (window.innerWidth<1100){
     var x = document.getElementById("nav_links");
@@ -59,13 +59,13 @@ function toggle_mobile_menu(){
     else{
       x.style.display = "flex";
     }
-  }
+  } 
 }
 
-//removes nav_mobile_links upon screen resize to full screen
-prev_width = window.innerWidth
-curr_width = window.innerWidth
-$(window).resize(function() {
+prev_width = window.innerWidth;
+curr_width = window.innerWidth;
+
+let reportWindowSize = () => {
   curr_width = window.innerWidth
   if (window.innerWidth>1100){
     var x = document.getElementById("nav_links");
@@ -76,6 +76,8 @@ $(window).resize(function() {
     x.style.display = "none";
   }
   prev_width = window.innerWidth
-});
+};
 
+
+window.addEventListener('resize', reportWindowSize);
 
