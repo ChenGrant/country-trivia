@@ -46,5 +46,5 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   var country_name = document.getElementById("country_name").value;
   document.getElementById("country_name").value = "";
-  render(country_name);
+  render(country_name.toLowerCase());
 });
