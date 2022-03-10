@@ -1,9 +1,14 @@
-const path = new URL(window.location.href).search;
-const mode = path.substring(path.indexOf("=") + 1);
-const minNumberQuestions = 1;
-const maxNumberQuestions = 50;
-const numOptions = 5;
+const PATH = new URL(window.location.href).search;
+const MODE = PATH.substring(PATH.indexOf("=") + 1);
+const MIN_NUM_QUESTIONS = 1;
+const MAX_NUM_QUESTIONS = 50;
+const NUM_OPTIONS = 5;
+const CORRECT = "correct";
+const INCORRECT = "incorrect";
+const INCOMPLETE = "";
 const countryModePairs = [];
+
+let questionCompletion = [];
 
 let numQuestions = 0;
 let currQuestionNum = 0;
@@ -12,8 +17,6 @@ let availableCountries = [];
 let answerCountry;
 let answerMode;
 let answerOptionNum;
-
-
 
 let getData = async () => {
   try {
@@ -27,7 +30,11 @@ let getData = async () => {
 };
 
 let renderMode = () => {
-  $(".mode").text(mode);
+  $(".mode").text(MODE);
+};
+
+let updateQuestionCompletion = (response) => {
+  questionCompletion[questionCompletion.indexOf(INCOMPLETE)] = response;
 };
 
 let initAvailableCountries = () => {
@@ -37,14 +44,14 @@ let initAvailableCountries = () => {
 let initCountryModePairs = (data) => {
   for (const country in data) {
     const currCountry = data[country];
-    if (currCountry[mode] === undefined) {
+    if (currCountry[MODE] === undefined) {
       continue;
     }
 
     let countryObject = {
       name: currCountry.name.common,
     };
-    countryObject[mode] = currCountry[mode][0];
+    countryObject[MODE] = currCountry[MODE][0];
 
     countryModePairs.push(countryObject);
   }
@@ -55,7 +62,14 @@ let enterKeyInput = (ele) => {
 };
 
 let validNumQuestions = (num) => {
-  return minNumberQuestions <= num && num <= maxNumberQuestions;
+  return MIN_NUM_QUESTIONS <= num && num <= MAX_NUM_QUESTIONS;
+};
+
+let initQuestionCompletion = () => {
+  for (let i = 0; i < numQuestions; i++) {
+    questionCompletion.push(INCOMPLETE);
+  }
+  console.log(questionCompletion);
 };
 
 let quizSubmit = () => {
@@ -66,6 +80,7 @@ let quizSubmit = () => {
   }
   $(".error_message").css("display", "none");
   numQuestions = inputNumQuestions;
+  initQuestionCompletion();
   $(".quiz-config").css("display", "none");
   $(".quiz").css("display", "block");
   renderQuiz();
@@ -84,7 +99,7 @@ let renderQuiz = () => {
 
 let getCountryMode = (countryName) => {
   return countryModePairs.filter((country) => country.name === countryName)[0][
-    mode
+    MODE
   ];
 };
 
@@ -98,7 +113,7 @@ let removeCountry = (countries, name) => {
 
 let renderOptions = (answerCountry, answerMode, answerOptionNum) => {
   let tempAvailableCountries = availableCountries;
-  for (let i = 1; i <= numOptions; i++) {
+  for (let i = 1; i <= NUM_OPTIONS; i++) {
     const option = $("#option" + i);
     if (answerOptionNum === i) {
       option.text(answerMode);
@@ -124,22 +139,24 @@ let renderQuestion = () => {
   let index = getRandomIndex(availableCountries);
   answerCountry = availableCountries[index];
   availableCountries = removeCountry(availableCountries, answerCountry);
-  answerOptionNum = getRandomInt(numOptions);
+  answerOptionNum = getRandomInt(NUM_OPTIONS);
   answerMode = getCountryMode(answerCountry);
   renderOptions(answerCountry, answerMode, answerOptionNum);
   $(".question_number").text(currQuestionNum + ".");
-  $(".actual_question").text("Which of the following is the " + mode + " of ");
+  $(".actual_question").text("Which of the following is the " + MODE + " of ");
   $(".question_country").text(answerCountry);
 };
 
-
-let user_answer = choice => {
-	if (choice === answerOptionNum) {
-		console.log("correct")
-		renderQuestion();
-	} else {
-		console.log("wrong, correct answer is: " + answerMode);
-	}
+let user_answer = (choice) => {
+  if (choice === answerOptionNum) {
+    console.log("correct");
+    updateQuestionCompletion(CORRECT);
+  } else {
+    console.log("wrong, correct answer is: " + answerMode);
+    updateQuestionCompletion(INCORRECT);
+  }
+  console.log(questionCompletion);
+  renderQuestion();
 };
 
 renderMode();
