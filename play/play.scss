@@ -9,7 +9,16 @@ body {
   background-color: white;
   font-family: "DM Sans", sans-serif;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -238,6 +247,7 @@ nav {
 }
 
 .quiz-config {
+  display: block;
   margin-top: 15vh;
   text-align: center;
   h1 {
@@ -274,19 +284,84 @@ nav {
     border: none;
     font-family: "DM Sans", sans-serif;
     border-radius: 40px;
+    outline: 0px;
     &:hover {
       box-shadow: 0px 0px 30px 10px gray;
       cursor: pointer;
     }
   }
 }
-.completed {
+.quiz {
+  margin-top: 8vh;
   display: none;
-  flex-direction: row;
   justify-content: center;
-  img {
-    height: 5vw;
-    margin: 0px 5px;
+  align-items: center;
+  .completed {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    img {
+      height: 5vw;
+      margin: 0px 5px;
+    }
+  }
+  .completed {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+    max-width: 500px;
+    .completion_number {
+      display: flex;
+      margin: 10px;
+      background-color: $color2;
+      width: 30px;
+      height: 30px;
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      border-radius: 100vh;
+    }
+  }
+  .question {
+    margin: 5vh 0px;
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    padding: 0px 20px;
+    .question_number {
+        color: $color2;
+    }
+    .actual_question {
+        color: black;
+    }
+    .question_country {
+        color: $color2;
+    }
+  }
+  .options {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    button {
+      width: min(90%, 500px);
+      text-align: left;
+      padding: 20px;
+      background-color: $color2;
+      border: none;
+      outline: none;
+      border-radius: 30px;
+      margin: 10px 0px;
+      color: white;
+      font-family: "DM Sans", sans-serif;
+      font-size: 20px;
+      &:hover {
+        box-shadow: 0px 0px 30px 10px gray;
+        cursor: pointer;
+        color: orange;
+      }
+    }
   }
 }
-
