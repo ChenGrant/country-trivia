@@ -48,3 +48,34 @@ form.addEventListener("submit", (event) => {
   document.getElementById("country_name").value = "";
   render(country_name.toLowerCase());
 });
+
+
+function toggle_mobile_menu(){
+  if (window.innerWidth<1100){
+    var x = document.getElementById("nav_links");
+    if (x.style.display == "flex") {
+      x.style.display = "none";
+    }
+    else{
+      x.style.display = "flex";
+    }
+  }
+}
+
+//removes nav_mobile_links upon screen resize to full screen
+prev_width = window.innerWidth
+curr_width = window.innerWidth
+$(window).resize(function() {
+  curr_width = window.innerWidth
+  if (window.innerWidth>1100){
+    var x = document.getElementById("nav_links");
+    x.style.display = "flex";
+  }
+  if (curr_width<1100 && prev_width>=1100){
+    var x = document.getElementById("nav_links");
+    x.style.display = "none";
+  }
+  prev_width = window.innerWidth
+});
+
+

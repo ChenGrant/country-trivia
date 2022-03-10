@@ -15,16 +15,22 @@
     />
   </head>
   <body>
-    <nav>
-      <div class="logo">
-        <a href="index.html"><img src="resources/logo.png" /></a>
+    <section>
+      <div class = "nav_bar_background">
+        <div class = "nav_bar_container">
+          <div class = "nav_menu_toggle">
+            <img onclick="toggle_mobile_menu()" src="resources/hamburger_menu.png" >
+          </div>
+          <div id = "nav_links">
+            <div class="left"></div>
+            <div onclick="toggle_mobile_menu()" class="center_nav"><a href="index.html">HOME</a></div>
+            <div onclick="toggle_mobile_menu()" class="center_nav"><a href="#play">PLAY</a></div>
+            <div onclick="toggle_mobile_menu()" class="center_nav"><a href = "#search">SEARCH</a></div>
+            <div class="right"></div>
+          </div>
+        </div>
       </div>
-      <div class="center_nav"><a href="index.html">HOME</a></div>
-      <div class="center_nav"><a href="#play">PLAY</a></div>
-      <div class="center_nav"><a href = "#search">SEARCH</a></div>
-      <div class="right"></div>
-    </nav>
-    <div class="offset"></div>
+    </section>
     <div class="wallpaper">Country Trivia</div>
     <div id="play" class="play">
       <h1 id="play_h1">
