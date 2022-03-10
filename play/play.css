@@ -330,13 +330,13 @@ a {
 }
 .quiz-config .num_questions {
   margin: 20vh 0px;
-  font-size: 30px;
+  font-size: min(30px, 3.1vh);
 }
 .quiz-config input {
-  font-size: 30px;
+  font-size: min(30px, 3.1vh);
   border: none;
   outline: none;
-  width: 60px;
+  width: 5vh;
   border-bottom: 5px solid #313bac;
   font-family: "DM Sans", sans-serif;
 }
@@ -365,7 +365,8 @@ a {
 }
 
 .quiz {
-  margin-top: 8vh;
+  margin-top: 65px;
+  padding-top: 3vh;
   display: none;
   justify-content: center;
   align-items: center;
@@ -407,9 +408,9 @@ a {
   font-weight: 800;
 }
 .quiz .question {
-  margin: 5vh 0px;
+  margin: 2vh 0px;
   text-align: center;
-  font-size: 30px;
+  font-size: min(30px, 3.1vh);
   color: black;
   padding: 0px 20px;
 }
@@ -431,7 +432,7 @@ a {
 .quiz .options button {
   width: min(90%, 500px);
   text-align: left;
-  padding: 20px;
+  padding: min(3vw, 17px);
   background-color: #313bac;
   border: none;
   outline: none;
@@ -439,7 +440,7 @@ a {
   margin: 10px 0px;
   color: white;
   font-family: "DM Sans", sans-serif;
-  font-size: 20px;
+  font-size: 1.2rem;
 }
 .quiz .options button:hover {
   box-shadow: 0px 0px 30px 10px gray;
