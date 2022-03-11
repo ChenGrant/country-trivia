@@ -1,5 +1,9 @@
 const PATH = new URL(window.location.href).search;
 const MODE = PATH.substring(PATH.indexOf("=") + 1);
+const CAPITAL = "capital";
+const FLAG = "flag";
+const CURRENCY = "currency";
+const LANGUAGE = "language";
 const MIN_NUM_QUESTIONS = 1;
 const MAX_NUM_QUESTIONS = 50;
 const NUM_OPTIONS = 5;
@@ -22,6 +26,7 @@ let getData = async () => {
   try {
     const response = await fetch("https://restcountries.com/v3.1/all");
     const data = await response.json();
+    console.log(data);
     initCountryModePairs(data);
     initAvailableCountries();
   } catch (err) {
@@ -38,19 +43,45 @@ let initAvailableCountries = () => {
 };
 
 let initCountryModePairs = (data) => {
+  let field = MODE;
+  if (MODE === FLAG || MODE == LANGUAGE) {
+    field = MODE + "s";
+  } else if (MODE === CURRENCY) {
+    field = "currencies";
+  }
   for (const country in data) {
     const currCountry = data[country];
-    if (currCountry[MODE] === undefined) {
+    if (currCountry[field] === undefined) {
       continue;
     }
 
     let countryObject = {
       name: currCountry.name.common,
     };
-    countryObject[MODE] = currCountry[MODE][0];
 
+    if (MODE === CAPITAL) {
+      countryObject[MODE] = currCountry[field][0];
+    } else if (MODE === FLAG) {
+      countryObject[MODE] = currCountry[field].png;
+    } else if (MODE === CURRENCY) {
+      let str = Object.values(currCountry[field])
+        .sort()
+        .reduce((prev, curr) => {
+          return prev + curr.name + ", ";
+        }, "");
+      countryObject[MODE] = str.substring(0, str.length - 2);
+    } else if (MODE === LANGUAGE) {
+      let str = Object.values(currCountry[field])
+        .sort()
+        .reduce((prev, curr) => {
+          return prev + curr + ", ";
+        }, "");
+      countryObject[MODE] = str.substring(0, str.length - 2);
+    }
     countryModePairs.push(countryObject);
   }
+  // remove countries that are too long
+  console.log(countryModePairs);
 };
 
 let enterKeyInput = (ele) => {
@@ -125,21 +156,53 @@ let removeCountry = (countries, name) => {
 };
 
 let renderOptions = (answerCountry, answerMode, answerOptionNum) => {
-  let tempAvailableCountries = availableCountries;
-  for (let i = 1; i <= NUM_OPTIONS; i++) {
-    const option = $("#option" + i);
-    if (answerOptionNum === i) {
-      option.text(answerMode);
-      continue;
+  if (MODE === CAPITAL) {
+    let tempAvailableCountries = availableCountries;
+    for (let i = 1; i <= NUM_OPTIONS; i++) {
+      const option = $("#option" + i);
+      if (answerOptionNum === i) {
+        option.text(answerMode);
+        continue;
+      }
+      const randomIndex = getRandomIndex(tempAvailableCountries);
+      const randomCountryName = tempAvailableCountries[randomIndex];
+      tempAvailableCountries = removeCountry(
+        tempAvailableCountries,
+        randomCountryName
+      );
+      const randomCountryMode = getCountryMode(randomCountryName);
+      option.text(randomCountryMode);
     }
-    const randomIndex = getRandomIndex(tempAvailableCountries);
-    const randomCountryName = tempAvailableCountries[randomIndex];
-    tempAvailableCountries = removeCountry(
-      tempAvailableCountries,
-      randomCountryName
-    );
-    const randomCountryMode = getCountryMode(randomCountryName);
-    option.text(randomCountryMode);
+  } else {
+    let tempAvailableCountries = availableCountries;
+    for (let i = 1; i <= NUM_OPTIONS; i++) {
+      const toRemove = document.querySelector(".flag_img");
+      if (toRemove === null) {
+        continue;
+      }
+      console.log(toRemove);
+      toRemove.remove();
+    }
+    for (let i = 1; i <= NUM_OPTIONS; i++) {
+      const option = $("#option" + i);
+      const image = document.createElement("img");
+      if (answerOptionNum === i) {
+        image.src = answerMode;
+        image.classList.add("flag_img");
+        option.append(image);
+        continue;
+      }
+      const randomIndex = getRandomIndex(tempAvailableCountries);
+      const randomCountryName = tempAvailableCountries[randomIndex];
+      tempAvailableCountries = removeCountry(
+        tempAvailableCountries,
+        randomCountryName
+      );
+      const randomCountryMode = getCountryMode(randomCountryName);
+      image.src = randomCountryMode
+      image.classList.add("flag_img");
+      option.append(image);
+    }
   }
 };
 
@@ -200,4 +263,17 @@ let user_answer = (choice) => {
   updateCompletion();
 };
 
+let renderMode = () => {
+  if (MODE === CAPITAL) {
+    $(".game_mode").text("capitals");
+  } else if (MODE === FLAG) {
+    $(".game_mode").text("flags");
+  } else if (MODE === CURRENCY) {
+    $(".game_mode").text("currencies");
+  } else if (MODE === LANGUAGE) {
+    $(".game_mode").text("languages");
+  }
+};
+
 getData();
+renderMode();

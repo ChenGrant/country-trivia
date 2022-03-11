@@ -434,7 +434,21 @@ a {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    span {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      .flag_img{
+        height: 7vh;
+      }
+    }
+    #option1, #option2, #option3, #option4, #option5 {
+      flex: 1;
+    }
     button {
+      display: flex;
+      align-items: center;
       width: min(90%, 500px);
       text-align: left;
       padding: min(3vw, 17px);

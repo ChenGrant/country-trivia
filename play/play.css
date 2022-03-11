@@ -429,7 +429,21 @@ a {
   flex-direction: column;
   align-items: center;
 }
+.quiz .options span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.quiz .options span .flag_img {
+  height: 7vh;
+}
+.quiz .options #option1, .quiz .options #option2, .quiz .options #option3, .quiz .options #option4, .quiz .options #option5 {
+  flex: 1;
+}
 .quiz .options button {
+  display: flex;
+  align-items: center;
   width: min(90%, 500px);
   text-align: left;
   padding: min(3vw, 17px);
