@@ -330,13 +330,14 @@ a {
   margin-top: 15vh;
   text-align: center;
   h1 {
+    padding: 0px 10px;
     span {
       color: $color2;
     }
     margin-bottom: 15vh;
   }
   .num_questions {
-    margin: 20vh 0px;
+    margin: 15vh 0px;
     font-size: min(30px, 3.1vh);
   }
   input {
@@ -349,12 +350,13 @@ a {
   }
   .error_message {
     display: none;
+    padding: 0px 10px;
     margin-top: 3vw;
     font-size: 30px;
     color: $color2;
   }
   button {
-    margin-top: 10vh;
+    margin-top: 9vh;
     width: min(300px, 70%);
     font-size: 30px;
     padding: 20px;
@@ -392,6 +394,7 @@ a {
     flex-wrap: wrap;
     margin: auto;
     max-width: 500px;
+    padding: 0px 20px;
     .completion_number {
       display: flex;
       margin: 8px;
@@ -414,11 +417,11 @@ a {
     }
   }
   .question {
-    margin: 2vh 0px;
     text-align: center;
     font-size: min(30px, 3.1vh);
     color: black;
-    padding: 0px 20px;
+    padding: 0px 2vw;
+    margin: 5vh;
     .question_number {
         color: $color2;
     }
@@ -440,7 +443,8 @@ a {
       align-items: center;
       height: 100%;
       .flag_img{
-        height: 7vh;
+        height: 6vh;
+        border: 1px solid black;
       }
     }
     #option1, #option2, #option3, #option4, #option5 {
@@ -465,6 +469,12 @@ a {
         cursor: pointer;
         color: orange;
       }
+    }
+    .correct {
+      background-color: green;
+    }
+    .incorrect {
+      background-color: red;
     }
   }
 }

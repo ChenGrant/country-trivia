@@ -21,6 +21,7 @@ let availableCountries = [];
 let answerCountry;
 let answerMode;
 let answerOptionNum;
+let rendering = false;
 
 let getData = async () => {
   try {
@@ -96,7 +97,6 @@ let initQuestionCompletion = () => {
   for (let i = 0; i < numQuestions; i++) {
     questionCompletion.push(INCOMPLETE);
   }
-  console.log(questionCompletion);
 };
 
 let quizSubmit = () => {
@@ -116,7 +116,6 @@ let quizSubmit = () => {
 
 let renderCompletion = () => {
   let completionElement = $(".completed");
-  console.log(questionCompletion);
   for (let i = 0; i < numQuestions; i++) {
     const icon = document.createElement("div");
     icon.textContent = i + 1;
@@ -180,7 +179,6 @@ let renderOptions = (answerCountry, answerMode, answerOptionNum) => {
       if (toRemove === null) {
         continue;
       }
-      console.log(toRemove);
       toRemove.remove();
     }
     for (let i = 1; i <= NUM_OPTIONS; i++) {
@@ -199,7 +197,7 @@ let renderOptions = (answerCountry, answerMode, answerOptionNum) => {
         randomCountryName
       );
       const randomCountryMode = getCountryMode(randomCountryName);
-      image.src = randomCountryMode
+      image.src = randomCountryMode;
       image.classList.add("flag_img");
       option.append(image);
     }
@@ -211,16 +209,21 @@ function getRandomInt(max) {
 }
 
 let renderQuestion = () => {
-  currQuestionNum++;
+  if (countryModePairs.length === 0) {
+    setTimeout(renderQuestion, 100);
+    $(".actual_question").text("Loading...");
+    return;
+  }
   let index = getRandomIndex(availableCountries);
   answerCountry = availableCountries[index];
   availableCountries = removeCountry(availableCountries, answerCountry);
   answerOptionNum = getRandomInt(NUM_OPTIONS);
+  currQuestionNum++;
   answerMode = getCountryMode(answerCountry);
   renderOptions(answerCountry, answerMode, answerOptionNum);
   $(".question_number").text(currQuestionNum + ".");
   $(".actual_question").text("Which of the following is the " + MODE + " of ");
-  $(".question_country").text(answerCountry);
+  $(".question_country").text(answerCountry + "?");
 };
 
 let removeQuestions = () => {
@@ -245,22 +248,51 @@ let renderScore = () => {
   $(".score_num").text(str);
 };
 
-let user_answer = (choice) => {
+let highlightCorrect = () => {
+  $("#button" + answerOptionNum).addClass("correct");
+};
+
+let highlightIncorrect = (num) => {
+  $("#button" + num).addClass("incorrect");
+};
+
+let removeHighlight = () => {
+  for (let i = 1; i <= NUM_OPTIONS; i++) {
+    $("#button" + i).removeClass("correct");
+    $("#button" + i).removeClass("incorrect");
+  }
+};
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+let user_answer = async (choice) => {
+  if (rendering) {
+    return;
+  }
+  rendering = true;
   if (choice === answerOptionNum) {
-    console.log("correct");
+    console.log("correct, the answer is " + answerMode);
     updateQuestionCompletion(CORRECT);
   } else {
     console.log("wrong, correct answer is: " + answerMode);
     updateQuestionCompletion(INCORRECT);
+    highlightIncorrect(choice);
   }
+  highlightCorrect();
+  await sleep(400);
   if (numQuestions != currQuestionNum) {
+    removeHighlight();
     renderQuestion();
   } else {
     removeQuestions();
     removeOptions();
     renderScore();
   }
+  console.log(questionCompletion);
   updateCompletion();
+  rendering = false;
 };
 
 let renderMode = () => {

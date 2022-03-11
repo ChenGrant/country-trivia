@@ -323,13 +323,14 @@ a {
   text-align: center;
 }
 .quiz-config h1 {
+  padding: 0px 10px;
   margin-bottom: 15vh;
 }
 .quiz-config h1 span {
   color: #313bac;
 }
 .quiz-config .num_questions {
-  margin: 20vh 0px;
+  margin: 15vh 0px;
   font-size: min(30px, 3.1vh);
 }
 .quiz-config input {
@@ -342,12 +343,13 @@ a {
 }
 .quiz-config .error_message {
   display: none;
+  padding: 0px 10px;
   margin-top: 3vw;
   font-size: 30px;
   color: #313bac;
 }
 .quiz-config button {
-  margin-top: 10vh;
+  margin-top: 9vh;
   width: min(300px, 70%);
   font-size: 30px;
   padding: 20px;
@@ -386,6 +388,7 @@ a {
   flex-wrap: wrap;
   margin: auto;
   max-width: 500px;
+  padding: 0px 20px;
 }
 .quiz .completed .completion_number {
   display: flex;
@@ -408,11 +411,11 @@ a {
   font-weight: 800;
 }
 .quiz .question {
-  margin: 2vh 0px;
   text-align: center;
   font-size: min(30px, 3.1vh);
   color: black;
-  padding: 0px 20px;
+  padding: 0px 2vw;
+  margin: 5vh;
 }
 .quiz .question .question_number {
   color: #313bac;
@@ -436,7 +439,8 @@ a {
   height: 100%;
 }
 .quiz .options span .flag_img {
-  height: 7vh;
+  height: 6vh;
+  border: 1px solid black;
 }
 .quiz .options #option1, .quiz .options #option2, .quiz .options #option3, .quiz .options #option4, .quiz .options #option5 {
   flex: 1;
@@ -460,6 +464,12 @@ a {
   box-shadow: 0px 0px 30px 10px gray;
   cursor: pointer;
   color: orange;
+}
+.quiz .options .correct {
+  background-color: green;
+}
+.quiz .options .incorrect {
+  background-color: red;
 }
 
 .score {
